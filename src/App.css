@@ -1,0 +1,105 @@
+/* Service card */
+.card {
+  background: #fff;
+  border-radius: 0.4em;
+  box-shadow: 0.3em 0.3em 0.7em #00000015;
+  transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: rgb(250, 250, 250) 0.2em solid;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.card:hover {
+  border: #02a95c 0.2em solid;
+}
+.card1 {
+  background: #fff;
+  border-radius: 0.4em;
+  box-shadow: 0.3em 0.3em 0.7em #00000015;
+  transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: rgb(250, 250, 250) 0.2em solid;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.card1:hover {
+  border: #02a95c 0.2em solid;
+  background: linear-gradient(#6045ea, #8567f7);
+  color: #ffffff;
+}
+
+.icons {
+  font-size: 2em;
+  cursor: pointer;
+  color: #02a95c;
+  padding: 3px;
+}
+
+/* Testimonial slider */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  object-fit: cover;
+}
+.Discord {
+  color: #4141ec;
+}
+.Instagram {
+  color: #ef3636;
+}
+.Youtube {
+  color: #ef3636;
+}
+.Twitter {
+  color: #4141ec;
+}
+
+/* Sparator */
+
+.divider {
+  position: relative;
+  margin-top: 20px;
+  height: 1px;
+}
+
+.div-transparent:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  height: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 149, 12, 1) 0%,
+    rgba(62, 242, 39, 1) 100%
+  );
+}
+.div-dot:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -9px;
+  left: calc(50% - 9px);
+  width: 18px;
+  height: 18px;
+  background-color: #02a95c;
+  border: 1px solid rgb(48, 49, 51);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px white, 0 0 0 4px white;
+}
