@@ -1,56 +1,97 @@
 import React from "react";
-import meal1 from "../assets/meal1.jpg";
-import meal2 from "../assets/meal2.jpg";
-import meal3 from "../assets/meal3.jpg";
+import { motion } from "framer-motion";
+import { Leaf, Package, Wind, Zap } from "lucide-react";
 
-import ImpactSection from "../Components/ImpactSection";
-function Impact() {
+const impactStats = [
+  { label: "Carbon Saved", value: "12,500+", unit: "Metric Tons", icon: <Leaf className="text-primary" /> },
+  { label: "Green Deliveries", value: "2.4M", unit: "Completed", icon: <Package className="text-primary" /> },
+  { label: "Urban Space", value: "15,000", unit: "Sq meters reclaimed", icon: <Wind className="text-blue-500" /> },
+  { label: "Energy Used", value: "100%", unit: "Renewable Source", icon: <Zap className="text-yellow-500" /> },
+];
+
+const Impact = () => {
   return (
-    <>
-      <div className="banner flex justify-center items-center py-20 my-5 text-white bg-black">
-        <h1 className="text-4xl font-bold py-40 text-center  ">Our Impact </h1>
-      </div>
-      <div
-        className=" flex justify-center sm:flex-row flex-col items-center h-screen"
-        data-aos="fade-up"
-      >
-        <div className=" sm:w-[48%] w-full px-3  text-black">
-          <h1 className="font-bold  lg:text-[30px] sm:text-[1.7em] xs:text-[1.2em] text-[1em] lg:leading-[1.3em] mt-2  capitalize">
-            Delivering positive impacts for society
-          </h1>
-          <p className="py-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
-            ad dicta exercitationem cum porro temporibus ipsum dolorem commodi
-            aperiam in illo molestiae magnam illum officiis cupiditate
-            voluptatem distinctio quasi quis.
-          </p>
+    <div className="pt-32 bg-white min-h-screen">
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto mb-20"
+          >
+            <h1 className="text-5xl md:text-7xl font-outfit font-extrabold mb-8 text-slate-900">
+              Purity in <br />
+              <span className="gradient-text">Logistics.</span>
+            </h1>
+            <p className="text-slate-600 text-lg leading-relaxed">
+              Every package delivered by Voltix represents a step towards 
+              cleaner air and quieter streets. We're on a mission to completely 
+              eliminate tailpipe emissions from the urban last-mile delivery loop.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {impactStats.map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="glass-card p-10 flex flex-col items-center bg-white border-slate-100"
+              >
+                <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center mb-6 border border-slate-100">
+                  {stat.icon}
+                </div>
+                <p className="text-sm text-slate-400 uppercase tracking-widest font-bold mb-2">{stat.label}</p>
+                <h2 className="text-4xl md:text-5xl font-outfit font-black mb-1 text-slate-900">{stat.value}</h2>
+                <p className="text-primary font-bold">{stat.unit}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
-        <div className="sm:w-[48%] w-full px-3">
-          <img src={meal3} alt="" />
+      </section>
+
+      {/* Narrative Section */}
+      <section className="section-padding bg-slate-50 border-y border-slate-100 sm:my-20">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl font-outfit font-bold mb-8 italic text-slate-900">Better Cities, Smarter Deliveries.</h2>
+            <div className="space-y-6 text-slate-600 leading-relaxed text-lg">
+              <p>
+                Urban logistics is responsible for a massive share of city traffic and air pollution. 
+                Voltix Delivery uses electric micro-mobility vehicles that are not only 
+                emission-free but also significantly smaller and quieter than traditional delivery vans.
+              </p>
+              <p>
+                Our real-time impact dashboard allows business partners to see the 
+                exact amount of CO2 their specific deliveries have saved, making 
+                sustainability a verifiable part of their supply chain.
+              </p>
+            </div>
+            <button className="btn-primary mt-12">View Impact Ledger</button>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, rotate: 3 }}
+            whileInView={{ opacity: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            className="glass-card p-4 bg-white border-slate-100 shadow-2xl"
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1000" 
+              className="rounded-xl shadow-inner" 
+              alt="Nature Impact" 
+            />
+          </motion.div>
         </div>
-      </div>
-      <ImpactSection />
-      <div
-        className=" flex justify-center sm:flex-row flex-col items-center h-screen "
-        data-aos="fade-up"
-      >
-        <div className=" sm:w-[48%] w-full px-2  text-black">
-          <h1 className="font-bold  lg:text-[30px] sm:text-[1.7em] xs:text-[1.2em] text-[1em] lg:leading-[1.3em] mt-2  capitalize">
-            Meal donations
-          </h1>
-          <p className="py-3 ">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
-            ad dicta exercitationem cum porro temporibus ipsum dolorem commodi
-            aperiam in illo molestiae magnam illum officiis cupiditate
-            voluptatem distinctio quasi quis.
-          </p>
-        </div>
-        <div className="sm:w-[48%] w-full px-3  ">
-          <img src={meal2} alt="" />
-        </div>
-      </div>
-    </>
+      </section>
+    </div>
   );
-}
+};
 
 export default Impact;

@@ -1,25 +1,32 @@
 import React from "react";
-import GrowthCard from "./GrowthCard";
-function Growth() {
+import { motion } from "framer-motion";
+
+const partners = ["Amazon", "Shopify", "DHL", "Uber", "FedEx", "Walmart"];
+
+const Growth = () => {
   return (
-    <>
-      <div className="m-auto">
-        <div className="py-3 text-center text-[#02a95c] content-bg my-4">
-          <h1 className="text-xl font-semibold capitalize ">we are growing</h1>
-          <div class="divider div-transparent div-dot"></div>
-        </div>
-        <div className="flex justify-around items-center flex-wrap gap-4 px-3">
-          <GrowthCard poeple={" 453k+"} poepleuser={"user order online"} />
-
-          {/* 2 */}
-          <GrowthCard poeple={" 2000k+"} poepleuser={"user order online"} />
-
-          {/* 3 */}
-          <GrowthCard poeple={" 459+"} poepleuser={"click event & more"} />
+    <section className="py-20 bg-white border-y border-slate-100">
+      <div className="max-w-7xl mx-auto px-6">
+        <p className="text-center text-slate-400 font-bold uppercase tracking-[0.3em] text-xs mb-12">
+          Powering Logistics for the Global Leaders
+        </p>
+        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+          {partners.map((partner, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="text-2xl md:text-3xl font-outfit font-black text-slate-900 tracking-tighter"
+            >
+              {partner}
+            </motion.div>
+          ))}
         </div>
       </div>
-    </>
+    </section>
   );
-}
+};
 
 export default Growth;

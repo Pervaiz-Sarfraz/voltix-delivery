@@ -1,57 +1,119 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 import Home from "./pages/Home";
-import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import Service from "./pages/Service";
 import Rider from "./pages/Rider";
-import Contact from "./pages/Contact";
-import Footer from "./Components/Footer";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import Loader from "./Components/Loader";
 import Impact from "./pages/Impact";
 import Invest from "./pages/Invest";
 import Term from "./pages/Term";
+import Contact from "./pages/Contact";
+import Loader from "./Components/Loader";
+
 function App() {
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
-    AOS.init({ duration: 2000 });
-    fetchLoader();
+    // Initial loading simulation
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
   }, []);
 
-  const fetchLoader = async () => {
-    // simulate a delay of 2 seconds
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    // set isLoading to false once the delay is over
-    setisLoading(false);
-  };
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/Service" element={<Service />} />
-            <Route path="/Rider" element={<Rider />} />
-            <Route path="/impact" element={<Impact />} />
-            <Route path="/Invest" element={<Invest />} />
-            <Route path="/term" element={<Term />} />
-            <Route path="/contact" element={<Contact />} />
+    <div className="flex flex-col min-h-screen bg-secondary text-white selection:bg-primary/30 selection:text-white">
+      <Header />
+      <main className="flex-grow">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={
+                <PageWrapper>
+                  <Home />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <PageWrapper>
+                  <About />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/Service"
+              element={
+                <PageWrapper>
+                  <Service />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/Rider"
+              element={
+                <PageWrapper>
+                  <Rider />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/impact"
+              element={
+                <PageWrapper>
+                  <Impact />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/Invest"
+              element={
+                <PageWrapper>
+                  <Invest />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/term"
+              element={
+                <PageWrapper>
+                  <Term />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <PageWrapper>
+                  <Contact />
+                </PageWrapper>
+              }
+            />
           </Routes>
-          <Footer />
-        </>
-      )}
-    </>
+        </AnimatePresence>
+      </main>
+      <Footer />
+    </div>
   );
 }
+
+const PageWrapper = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -10 }}
+    transition={{ duration: 0.4, ease: "easeOut" }}
+  >
+    {children}
+  </motion.div>
+);
 
 export default App;
